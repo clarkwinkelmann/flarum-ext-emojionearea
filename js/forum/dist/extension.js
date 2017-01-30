@@ -1209,54 +1209,12 @@
 	$.fn.emojioneArea.defaults = getDefaultOptions();
 
 }) (document, window, jQuery);;
-System.register('clarkwinkelmann/emojionearea/addEmojioneAreaPlugin', ['flarum/extend', 'flarum/components/ComposerBody'], function (_export) {
-    'use strict';
-
-    var extend, ComposerBody;
-
-    _export('default', addEmojioneAreaPlugin);
-
-    function addEmojioneAreaPlugin() {
-
-        extend(ComposerBody.prototype, 'config', function (original, isInitialized) {
-            if (isInitialized) return;
-
-            var composer = this;
-            var $container = $('<div class="ComposerBody-emojioneareaContainer"></div>');
-            var $wrapper = $('<div class="ComposerBody-emojioneareaWrapper"></div>'); // TODO: useless
-            var $textarea = this.$('textarea').wrap($wrapper);
-            $textarea.after($container);
-
-            /*$textarea.emojioneArea({
-                container: $container,
-                hideSource: false,
-                autocomplete: false, // It would compete with the one from flarum/flarum-ext-emoji and requires $.textcomplete
-            });*/
-            $textarea.emojioneArea({
-                container: $container,
-                standalone: true,
-                hideSource: false,
-                autocomplete: false,
-                events: {
-                    emojibtn_click: function emojibtn_click(button, event) {
-                        var shortcode = button.data('name');
-                        composer.editor.insertAtCursor(shortcode);
-                    }
-                }
-            });
-        });
-    }
-
-    return {
-        setters: [function (_flarumExtend) {
-            extend = _flarumExtend.extend;
-        }, function (_flarumComponentsComposerBody) {
-            ComposerBody = _flarumComponentsComposerBody['default'];
-        }],
-        execute: function () {}
-    };
-});;
 System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["flarum/Component", "flarum/helpers/icon"], function (_export) {
+    /**
+     * This file is part of clarkwinkelmann/flarum-ext-emojionearea
+     * See README.md for details and license
+     */
+
     "use strict";
 
     var Component, icon, EmojiAreaButton;
@@ -1316,6 +1274,11 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
     };
 });;
 System.register("clarkwinkelmann/emojionearea/main", ["flarum/extend", "flarum/components/TextEditor", "clarkwinkelmann/emojionearea/components/EmojiAreaButton"], function (_export) {
+    /**
+     * This file is part of clarkwinkelmann/flarum-ext-emojionearea
+     * See README.md for details and license
+     */
+
     "use strict";
 
     var extend, TextEditor, EmojiAreaButton;
