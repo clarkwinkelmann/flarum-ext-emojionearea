@@ -1259,6 +1259,7 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                             autocomplete: false, // Do not try to provide autocomplete - not sure if useful in standalone mode but safer
                             sprite: false, // Not used by the actual picker, but loads an additional CSS file if enabled
                             useInternalCDN: false, // Use the same CDN as Flarum so images are not fetched twice
+                            buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
                             events: { // Listen for clicks to sync with Flarum editor
                                 emojibtn_click: function emojibtn_click(button, event) {
                                     var shortcode = button.data('name');
