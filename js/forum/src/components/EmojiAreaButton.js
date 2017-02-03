@@ -8,6 +8,10 @@ import icon from "flarum/helpers/icon";
 
 export default class EmojiAreaButton extends Component {
 
+    init() {
+        this.textEditor = this.props.textEditor;
+    }
+
     view() {
         return m('div', {config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon'}, [
             icon('smile-o', {className: 'Button-icon'}),
@@ -31,8 +35,7 @@ export default class EmojiAreaButton extends Component {
             buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
             events: { // Listen for clicks to sync with Flarum editor
                 emojibtn_click: button => {
-                    const shortcode = button.data('name');
-                    this.props.textEditor.insertAtCursor(shortcode);
+                    this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
                 }
             }
         });

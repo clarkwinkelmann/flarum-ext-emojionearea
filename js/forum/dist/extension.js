@@ -1234,6 +1234,11 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                 }
 
                 babelHelpers.createClass(EmojiAreaButton, [{
+                    key: "init",
+                    value: function init() {
+                        this.textEditor = this.props.textEditor;
+                    }
+                }, {
                     key: "view",
                     value: function view() {
                         return m('div', { config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon' }, [icon('smile-o', { className: 'Button-icon' }), m('span', { className: 'Button-label' }, 'Emojis'), // TODO: translate ?
@@ -1258,8 +1263,7 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                             buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
                             events: { // Listen for clicks to sync with Flarum editor
                                 emojibtn_click: function emojibtn_click(button) {
-                                    var shortcode = button.data('name');
-                                    _this.props.textEditor.insertAtCursor(shortcode);
+                                    _this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
                                 }
                             }
                         });
