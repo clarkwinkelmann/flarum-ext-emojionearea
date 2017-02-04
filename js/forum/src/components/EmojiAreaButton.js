@@ -9,22 +9,21 @@ import icon from "flarum/helpers/icon";
 export default class EmojiAreaButton extends Component {
 
     init() {
-        this.textEditor = null;
+        this.textEditor = this.props.textEditor;
     }
 
     view() {
         return m('div', {config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon'}, [
             icon('smile-o', {className: 'Button-icon'}),
             m('span', {className: 'Button-label'}, 'Emojis'), // TODO: translate ?
-            m('span', {className: 'Button-emojioneareaContainer'})
+            m('div', {className: 'Button-emojioneareaContainer'})
         ]);
     }
 
     configArea(element, isInitialized) {
         if (isInitialized) return;
 
-        var $container = $(element).find('.Button-emojioneareaContainer');
-        var editor = this.textEditor;
+        const $container = $(element).find('.Button-emojioneareaContainer');
 
         $('<div />').emojioneArea({
             container: $container,
@@ -35,9 +34,8 @@ export default class EmojiAreaButton extends Component {
             useInternalCDN: false, // Use the same CDN as Flarum so images are not fetched twice
             buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
             events: { // Listen for clicks to sync with Flarum editor
-                emojibtn_click: function (button, event) {
-                    var shortcode = button.data('name');
-                    editor.insertAtCursor(shortcode);
+                emojibtn_click: button => {
+                    this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
                 }
             }
         });

@@ -1236,21 +1236,22 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                 babelHelpers.createClass(EmojiAreaButton, [{
                     key: "init",
                     value: function init() {
-                        this.textEditor = null;
+                        this.textEditor = this.props.textEditor;
                     }
                 }, {
                     key: "view",
                     value: function view() {
                         return m('div', { config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon' }, [icon('smile-o', { className: 'Button-icon' }), m('span', { className: 'Button-label' }, 'Emojis'), // TODO: translate ?
-                        m('span', { className: 'Button-emojioneareaContainer' })]);
+                        m('div', { className: 'Button-emojioneareaContainer' })]);
                     }
                 }, {
                     key: "configArea",
                     value: function configArea(element, isInitialized) {
+                        var _this = this;
+
                         if (isInitialized) return;
 
                         var $container = $(element).find('.Button-emojioneareaContainer');
-                        var editor = this.textEditor;
 
                         $('<div />').emojioneArea({
                             container: $container,
@@ -1261,9 +1262,8 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                             useInternalCDN: false, // Use the same CDN as Flarum so images are not fetched twice
                             buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
                             events: { // Listen for clicks to sync with Flarum editor
-                                emojibtn_click: function emojibtn_click(button, event) {
-                                    var shortcode = button.data('name');
-                                    editor.insertAtCursor(shortcode);
+                                emojibtn_click: function emojibtn_click(button) {
+                                    _this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
                                 }
                             }
                         });
@@ -1297,8 +1297,10 @@ System.register("clarkwinkelmann/emojionearea/main", ["flarum/extend", "flarum/c
 
             app.initializers.add('clarkwinkelmann-emojionearea', function () {
                 extend(TextEditor.prototype, 'controlItems', function (items) {
-                    var emojiButton = new EmojiAreaButton();
-                    emojiButton.textEditor = this;
+                    var emojiButton = new EmojiAreaButton({
+                        textEditor: this
+                    });
+
                     items.add('clarkwinkelmann-emojionearea', emojiButton, 0);
                 });
             });

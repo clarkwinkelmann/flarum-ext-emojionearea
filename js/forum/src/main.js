@@ -9,8 +9,10 @@ import EmojiAreaButton from 'clarkwinkelmann/emojionearea/components/EmojiAreaBu
 
 app.initializers.add('clarkwinkelmann-emojionearea', () => {
     extend(TextEditor.prototype, 'controlItems', function (items) {
-        var emojiButton = new EmojiAreaButton;
-        emojiButton.textEditor = this;
+        const emojiButton = new EmojiAreaButton({
+            textEditor: this
+        });
+
         items.add('clarkwinkelmann-emojionearea', emojiButton, 0);
     });
 });
