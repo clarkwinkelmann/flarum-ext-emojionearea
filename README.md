@@ -6,6 +6,16 @@
 
 This is a simple extension to add the [EmojiOne Area](https://github.com/mervick/emojionearea) jQuery plugin to [Flarum](https://github.com/flarum).
 
+Install it:
+
+    composer require clarkwinkelmann/flarum-ext-emojionearea
+
+Links:
+
+- [Thread on Flarum Discuss](https://discuss.flarum.org/d/4787-emoji-picker)
+- [GitHub](https://github.com/clarkwinkelmann/flarum-ext-emojionearea)
+- [Packagist](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea)
+
 ## License
 
 The `dist` files include code from [meverick/emojionearea](https://github.com/mervick/emojionearea) subject to the following [Licence](https://github.com/mervick/emojionearea/blob/master/LICENSE):
