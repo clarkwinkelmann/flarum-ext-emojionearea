@@ -2,7 +2,7 @@
 
 /**
  * This file is part of clarkwinkelmann/flarum-ext-emojionearea
- * See README.md for details and license
+ * See README.md for details and license.
  */
 
 namespace ClarkWinkelmann\EmojiOneArea;
