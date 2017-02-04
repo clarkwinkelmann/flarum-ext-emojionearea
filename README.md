@@ -1,5 +1,9 @@
 # Flarum Emoji Picker
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/clarkwinkelmann/flarum-ext-emojionearea/master/LICENSE.txt) [![Packagist](https://img.shields.io/packagist/v/clarkwinkelmann/flarum-ext-emojionearea.svg?style=flat-square)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![Packagist](https://img.shields.io/packagist/dt/clarkwinkelmann/flarum-ext-emojionearea.svg?style=flat-square)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![StyleCI](https://styleci.io/repos/80447128/shield?branch=master)](https://styleci.io/repos/80447128) [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg?style=flat-square)](https://www.paypal.me/clarkwinkelmann)
+
+![Screenshot](https://i.imgur.com/et10zWd.png)
+
 This is a simple extension to add the [EmojiOne Area](https://github.com/mervick/emojionearea) jQuery plugin to [Flarum](https://github.com/flarum).
 
 ## License
