@@ -1215,9 +1215,12 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
      * See README.md for details and license
      */
 
+    /* global m, $ */
+
     "use strict";
 
-    var Component, icon, EmojiAreaButton;
+    var Component, icon, _default;
+
     return {
         setters: [function (_flarumComponent) {
             Component = _flarumComponent["default"];
@@ -1225,15 +1228,15 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
             icon = _flarumHelpersIcon["default"];
         }],
         execute: function () {
-            EmojiAreaButton = (function (_Component) {
-                babelHelpers.inherits(EmojiAreaButton, _Component);
+            _default = (function (_Component) {
+                babelHelpers.inherits(_default, _Component);
 
-                function EmojiAreaButton() {
-                    babelHelpers.classCallCheck(this, EmojiAreaButton);
-                    babelHelpers.get(Object.getPrototypeOf(EmojiAreaButton.prototype), "constructor", this).apply(this, arguments);
+                function _default() {
+                    babelHelpers.classCallCheck(this, _default);
+                    babelHelpers.get(Object.getPrototypeOf(_default.prototype), "constructor", this).apply(this, arguments);
                 }
 
-                babelHelpers.createClass(EmojiAreaButton, [{
+                babelHelpers.createClass(_default, [{
                     key: "init",
                     value: function init() {
                         this.textEditor = this.props.textEditor;
@@ -1241,8 +1244,10 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                 }, {
                     key: "view",
                     value: function view() {
-                        return m('div', { config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon' }, [icon('smile-o', { className: 'Button-icon' }), m('span', { className: 'Button-label' }, 'Emojis'), // TODO: translate ?
-                        m('div', { className: 'Button-emojioneareaContainer' })]);
+                        return m('.Button.Button-emojionearea.hasIcon.Button--icon', {
+                            config: this.configArea.bind(this)
+                        }, [icon('smile-o', { className: 'Button-icon' }), m('span.Button-label', 'Emojis'), // TODO: translate ?
+                        m('.Button-emojioneareaContainer')]);
                     }
                 }, {
                     key: "configArea",
@@ -1269,29 +1274,31 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                         });
                     }
                 }]);
-                return EmojiAreaButton;
+                return _default;
             })(Component);
 
-            _export("default", EmojiAreaButton);
+            _export("default", _default);
         }
     };
 });;
-System.register("clarkwinkelmann/emojionearea/main", ["flarum/extend", "flarum/components/TextEditor", "clarkwinkelmann/emojionearea/components/EmojiAreaButton"], function (_export) {
+System.register('clarkwinkelmann/emojionearea/main', ['flarum/app', 'flarum/extend', 'flarum/components/TextEditor', 'clarkwinkelmann/emojionearea/components/EmojiAreaButton'], function (_export) {
     /**
      * This file is part of clarkwinkelmann/flarum-ext-emojionearea
      * See README.md for details and license
      */
 
-    "use strict";
+    'use strict';
 
-    var extend, TextEditor, EmojiAreaButton;
+    var app, extend, TextEditor, EmojiAreaButton;
     return {
-        setters: [function (_flarumExtend) {
+        setters: [function (_flarumApp) {
+            app = _flarumApp['default'];
+        }, function (_flarumExtend) {
             extend = _flarumExtend.extend;
         }, function (_flarumComponentsTextEditor) {
-            TextEditor = _flarumComponentsTextEditor["default"];
+            TextEditor = _flarumComponentsTextEditor['default'];
         }, function (_clarkwinkelmannEmojioneareaComponentsEmojiAreaButton) {
-            EmojiAreaButton = _clarkwinkelmannEmojioneareaComponentsEmojiAreaButton["default"];
+            EmojiAreaButton = _clarkwinkelmannEmojioneareaComponentsEmojiAreaButton['default'];
         }],
         execute: function () {
 

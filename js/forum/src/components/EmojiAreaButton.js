@@ -3,20 +3,24 @@
  * See README.md for details and license
  */
 
+/* global m, $ */
+
 import Component from "flarum/Component";
 import icon from "flarum/helpers/icon";
 
-export default class EmojiAreaButton extends Component {
+export default class extends Component {
 
     init() {
         this.textEditor = this.props.textEditor;
     }
 
     view() {
-        return m('div', {config: this.configArea.bind(this), className: 'Button Button-emojionearea hasIcon Button--icon'}, [
+        return m('.Button.Button-emojionearea.hasIcon.Button--icon', {
+            config: this.configArea.bind(this),
+        }, [
             icon('smile-o', {className: 'Button-icon'}),
-            m('span', {className: 'Button-label'}, 'Emojis'), // TODO: translate ?
-            m('div', {className: 'Button-emojioneareaContainer'})
+            m('span.Button-label', 'Emojis'), // TODO: translate ?
+            m('.Button-emojioneareaContainer'),
         ]);
     }
 
@@ -36,8 +40,8 @@ export default class EmojiAreaButton extends Component {
             events: { // Listen for clicks to sync with Flarum editor
                 emojibtn_click: button => {
                     this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
-                }
-            }
+                },
+            },
         });
     }
 
