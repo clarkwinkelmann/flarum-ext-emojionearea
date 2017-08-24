@@ -24,7 +24,7 @@ export default class extends Component {
         ]);
     }
 
-    configArea(element, isInitialized) {
+    configArea(element, isInitialized, context) {
         if (isInitialized) return;
 
         const $container = $(element).find('.Button-emojioneareaContainer');
@@ -43,6 +43,28 @@ export default class extends Component {
                 },
             },
         });
+
+        document.addEventListener('click', this.clickedOutside);
+
+        context.onunload = () => {
+            document.removeEventListener('click', this.clickedOutside);
+        };
+    }
+
+    clickedOutside(event) {
+        const $target = $(event.target);
+
+        // If we clicked on the popup or its content we don't do anything
+        if ($target.is('.Button-emojioneareaContainer') || $target.parents('.Button-emojioneareaContainer').size()) {
+            return;
+        }
+
+        const $button = $('.Button-emojioneareaContainer .emojionearea-button');
+
+        // If the popup is currently open we close it
+        if ($button.is('.active')) {
+            $button.trigger('click');
+        }
     }
 
 }

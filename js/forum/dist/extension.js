@@ -1251,7 +1251,7 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                     }
                 }, {
                     key: "configArea",
-                    value: function configArea(element, isInitialized) {
+                    value: function configArea(element, isInitialized, context) {
                         var _this = this;
 
                         if (isInitialized) return;
@@ -1272,6 +1272,29 @@ System.register("clarkwinkelmann/emojionearea/components/EmojiAreaButton", ["fla
                                 }
                             }
                         });
+
+                        document.addEventListener('click', this.clickedOutside);
+
+                        context.onunload = function () {
+                            document.removeEventListener('click', _this.clickedOutside);
+                        };
+                    }
+                }, {
+                    key: "clickedOutside",
+                    value: function clickedOutside(event) {
+                        var $target = $(event.target);
+
+                        // If we clicked on the popup or its content we don't do anything
+                        if ($target.is('.Button-emojioneareaContainer') || $target.parents('.Button-emojioneareaContainer').size()) {
+                            return;
+                        }
+
+                        var $button = $('.Button-emojioneareaContainer .emojionearea-button');
+
+                        // If the popup is currently open we close it
+                        if ($button.is('.active')) {
+                            $button.trigger('click');
+                        }
                     }
                 }]);
                 return _default;
