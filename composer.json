@@ -24,7 +24,12 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "Emoji Picker"
+            "title": "Emoji Picker",
+            "icon": {
+                "name": "caret-square-o-up",
+                "backgroundColor": "#f39c12",
+                "color": "#ffffff"
+            }
         }
     }
 }
