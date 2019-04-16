@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2017 Clark Winkelmann
+Copyright (c) 2017-2019 Clark Winkelmann
+Copyright (c) 2015-2017 Andrey Izman <izmanw@gmail.com> (copyright owner of the emojionearea code in the js/dist folder)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

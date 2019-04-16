@@ -1,0 +1,8 @@
+.gitattributes export-ignore
+.github export-ignore
+.gitignore export-ignore
+.gitmodules export-ignore
+js/src export-ignore
+
+js/*/dist/*.js -diff
+js/*/dist/*.css -diff

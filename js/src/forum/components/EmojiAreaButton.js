@@ -1,12 +1,10 @@
-/**
- * This file is part of clarkwinkelmann/flarum-ext-emojionearea
- * See README.md for details and license
- */
+import app from 'flarum/app';
+import icon from "flarum/helpers/icon";
+import Component from "flarum/Component";
 
 /* global m, $ */
 
-import Component from "flarum/Component";
-import icon from "flarum/helpers/icon";
+const translationPrefix = 'clarkwinkelmann-emojionearea.forum.';
 
 export default class extends Component {
 
@@ -18,8 +16,7 @@ export default class extends Component {
         return m('.Button.Button-emojionearea.hasIcon.Button--icon', {
             config: this.configArea.bind(this),
         }, [
-            icon('smile-o', {className: 'Button-icon'}),
-            m('span.Button-label', 'Emojis'), // TODO: translate ?
+            icon('far fa-smile-beam', {className: 'Button-icon'}),
             m('.Button-emojioneareaContainer'),
         ]);
     }
@@ -29,17 +26,17 @@ export default class extends Component {
 
         const $container = $(element).find('.Button-emojioneareaContainer');
 
-        $('<div />').emojioneArea({
+        const area = $('<div />').emojioneArea({
             container: $container,
             standalone: true, // Popup only mode
             hideSource: false, // Do not hide the target element
-            autocomplete: false, // Do not try to provide autocomplete - not sure if useful in standalone mode but safer
+            autocomplete: false, // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
             sprite: false, // Not used by the actual picker, but loads an additional CSS file if enabled
-            useInternalCDN: false, // Use the same CDN as Flarum so images are not fetched twice
-            buttonTitle: 'Emoji', // The default text includes something with TAB, even for the standalone version where it is useless
+            buttonTitle: app.translator.trans(translationPrefix + 'picker_button'), // The default text includes something mentioning a TAB key, even for the standalone version where it makes no sense
+            searchPlaceholder: app.translator.trans(translationPrefix + 'search_placeholder'),
             events: { // Listen for clicks to sync with Flarum editor
-                emojibtn_click: button => {
-                    this.textEditor.insertAtCursor(button.data('name')); // Insert shortcode
+                emojibtn_click: () => {
+                    this.textEditor.insertAtCursor(area.data('emojioneArea').getText());
                 },
             },
         });
@@ -55,7 +52,7 @@ export default class extends Component {
         const $target = $(event.target);
 
         // If we clicked on the popup or its content we don't do anything
-        if ($target.is('.Button-emojioneareaContainer') || $target.parents('.Button-emojioneareaContainer').size()) {
+        if ($target.is('.Button-emojioneareaContainer') || $target.parents('.Button-emojioneareaContainer').length) {
             return;
         }
 

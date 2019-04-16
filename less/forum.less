@@ -32,7 +32,7 @@
                 display: none;
             }
 
-            // Make the original open and close buttons invlsible but take the whole place so they can be clicked
+            // Make the original open and close buttons invisible but take the whole place so they can be clicked
             .emojionearea-button {
                 opacity: 0;
 
@@ -60,4 +60,9 @@
             }
         }
     }
+}
+
+.TextEditor-controls {
+    // Workaround https://github.com/flarum/core/issues/1692
+    overflow-x: visible;
 }
