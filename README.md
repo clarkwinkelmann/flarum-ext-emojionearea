@@ -1,8 +1,9 @@
 # Flarum Emoji Picker
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/clarkwinkelmann/flarum-ext-emojionearea/master/LICENSE.txt) [![Packagist](https://img.shields.io/packagist/v/clarkwinkelmann/flarum-ext-emojionearea.svg?style=flat-square)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![Packagist](https://img.shields.io/packagist/dt/clarkwinkelmann/flarum-ext-emojionearea.svg?style=flat-square)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![StyleCI](https://styleci.io/repos/80447128/shield?branch=master)](https://styleci.io/repos/80447128) [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg?style=flat-square)](https://www.paypal.me/clarkwinkelmann)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/clarkwinkelmann/flarum-ext-emojionearea/master/LICENSE.txt) [![Packagist](https://img.shields.io/packagist/v/clarkwinkelmann/flarum-ext-emojionearea.svg)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![Packagist](https://img.shields.io/packagist/dt/clarkwinkelmann/flarum-ext-emojionearea.svg)](https://packagist.org/packages/clarkwinkelmann/flarum-ext-emojionearea) [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.me/clarkwinkelmann)
 
-![Screenshot](https://i.imgur.com/et10zWd.png)
+![Screenshot of the editor](https://i.imgur.com/iFt2AS8.png)
+![Screenshot of the settings](https://i.imgur.com/A63PMUR.png)
 
 This extension adds the [EmojiOne Area](https://github.com/mervick/emojionearea) emoji picker to [Flarum](https://github.com/flarum).
 

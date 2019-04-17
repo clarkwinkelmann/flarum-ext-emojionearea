@@ -1,6 +1,6 @@
 {
     "name": "clarkwinkelmann/flarum-ext-emojionearea",
-    "description": "Add EmojiOne Area emoji picker to Flarum",
+    "description": "Add EmojioneArea emoji picker to Flarum",
     "type": "flarum-extension",
     "license": "MIT",
     "authors": [
@@ -30,6 +30,9 @@
                 "backgroundColor": "#f39c12",
                 "color": "#ffffff"
             }
+        },
+        "flagrow": {
+            "discuss": "https://discuss.flarum.org/d/4787"
         }
     }
 }
