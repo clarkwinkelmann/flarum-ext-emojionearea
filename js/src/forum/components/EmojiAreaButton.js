@@ -13,7 +13,7 @@ export default class extends Component {
     }
 
     view() {
-        return m('.Button.Button-emojionearea.hasIcon.Button--icon', {
+        return m('.Button.Button-emojionearea.hasIcon.Button--link.Button--icon', {
             config: this.configArea.bind(this),
         }, [
             icon('far fa-smile-beam', {className: 'Button-icon'}),
@@ -27,15 +27,20 @@ export default class extends Component {
         const $container = $(element).find('.Button-emojioneareaContainer');
 
         const area = $('<div />').emojioneArea({
-            container: $container,
             standalone: true, // Popup only mode
+            search: app.forum.attribute('emojioneAreaEnableSearch'),
+            searchPlaceholder: app.translator.trans(translationPrefix + 'search_placeholder'),
+            buttonTitle: app.translator.trans(translationPrefix + 'picker_button'),
+            recentEmojis: app.forum.attribute('emojioneAreaEnableRecent'),
+            filtersPosition: app.forum.attribute('emojioneAreaFiltersPositionBottom') ? 'bottom' : 'top',
+            searchPosition: app.forum.attribute('emojioneAreaSearchPositionBottom') ? 'bottom' : 'top',
+            container: $container,
+            tones: app.forum.attribute('emojioneAreaEnableTones'),
             hideSource: false, // Do not hide the target element
             autocomplete: false, // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
-            sprite: false, // Not used by the actual picker, but loads an additional CSS file if enabled
-            buttonTitle: app.translator.trans(translationPrefix + 'picker_button'), // The default text includes something mentioning a TAB key, even for the standalone version where it makes no sense
-            searchPlaceholder: app.translator.trans(translationPrefix + 'search_placeholder'),
             events: { // Listen for clicks to sync with Flarum editor
                 emojibtn_click: () => {
+                    // To get the unicode value, we need to pull it from the invisible insert area
                     this.textEditor.insertAtCursor(area.data('emojioneArea').getText());
                 },
             },

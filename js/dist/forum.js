@@ -1935,7 +1935,7 @@ function (_Component) {
   };
 
   _proto.view = function view() {
-    return m('.Button.Button-emojionearea.hasIcon.Button--icon', {
+    return m('.Button.Button-emojionearea.hasIcon.Button--link.Button--icon', {
       config: this.configArea.bind(this)
     }, [flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_2___default()('far fa-smile-beam', {
       className: 'Button-icon'
@@ -1948,21 +1948,24 @@ function (_Component) {
     if (isInitialized) return;
     var $container = $(element).find('.Button-emojioneareaContainer');
     var area = $('<div />').emojioneArea({
-      container: $container,
       standalone: true,
       // Popup only mode
+      search: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableSearch'),
+      searchPlaceholder: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'search_placeholder'),
+      buttonTitle: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'picker_button'),
+      recentEmojis: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableRecent'),
+      filtersPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaFiltersPositionBottom') ? 'bottom' : 'top',
+      searchPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaSearchPositionBottom') ? 'bottom' : 'top',
+      container: $container,
+      tones: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableTones'),
       hideSource: false,
       // Do not hide the target element
       autocomplete: false,
       // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
-      sprite: false,
-      // Not used by the actual picker, but loads an additional CSS file if enabled
-      buttonTitle: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'picker_button'),
-      // The default text includes something mentioning a TAB key, even for the standalone version where it makes no sense
-      searchPlaceholder: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'search_placeholder'),
       events: {
         // Listen for clicks to sync with Flarum editor
         emojibtn_click: function emojibtn_click() {
+          // To get the unicode value, we need to pull it from the invisible insert area
           _this.textEditor.insertAtCursor(area.data('emojioneArea').getText());
         }
       }
@@ -2016,10 +2019,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('clarkwinkelmann-emojionearea', function () {
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'controlItems', function (items) {
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'controlItems', function (items) {});
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'toolbarItems', function (items) {
     items.add('clarkwinkelmann-emojionearea', _components_EmojiAreaButton__WEBPACK_IMPORTED_MODULE_3__["default"].component({
       textEditor: this
     }));
+
+    if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaHideFlarumButton')) {
+      console.log(items.toArray(), 'toolbar');
+      items.remove('emoji');
+    }
   });
 });
 
