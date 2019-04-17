@@ -1,68 +1,18 @@
-/**
- * This file is part of clarkwinkelmann/flarum-ext-emojionearea
- * See README.md for details and license
- */
-
-.Button-emojionearea {
-    position: relative;
-
-    // The standalone editor is placed inside the button
-    // and stretched using absolute positionning
-    .Button-emojioneareaContainer {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        text-align: left;
-
-        .emojionearea.emojionearea-standalone {
-            display: block;
-            border: none;
-            position: absolute !important;
-            background: none;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-
-            // The part of the standalone editor that receive the emoji is not used here,
-            // all hooking is done through javascript
-            .emojionearea-editor {
-                display: none;
-            }
-
-            // Make the original open and close buttons invisible but take the whole place so they can be clicked
-            .emojionearea-button {
-                opacity: 0;
-
-                > div {
-                    width: auto;
-                    height: auto;
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                }
-            }
-
-            .emojionearea-picker.emojionearea-picker-position-top {
-                // opposite of original
-                right: auto;
-                left: -11px; // Adjusted for the tip of the triangle to be centered
-
-                .emojionearea-wrapper:after {
-                    // opposite of original
-                    right: auto;
-                    left: 20px;
-                }
-            }
-        }
+.emojionearea.emojionearea-standalone {
+    // Hide the standalone button/display as we only use the picker itself
+    .emojionearea-editor,
+    .emojionearea-button {
+        display: none;
     }
 }
 
-.TextEditor-controls {
-    // Workaround https://github.com/flarum/core/issues/1692
-    overflow-x: visible;
+.ComposerBody-emojioneareaContainer {
+    height: 0;
+
+    // Same margins as .TextEditor-controls
+    // So the position of the picker is relative to the border of the composer, even when the avatar is shown on the side
+    @media @tablet-up {
+        margin: 0 -20px 0 -105px;
+        padding: 0 20px;
+    }
 }

@@ -103,24 +103,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js ***!
-  \******************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _inheritsLoose; });
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-/***/ }),
-
 /***/ "./node_modules/emojionearea/dist/emojionearea.js":
 /*!********************************************************!*\
   !*** ./node_modules/emojionearea/dist/emojionearea.js ***!
@@ -1894,110 +1876,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/forum/components/EmojiAreaButton.js":
-/*!*************************************************!*\
-  !*** ./src/forum/components/EmojiAreaButton.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
-/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/app */ "flarum/app");
-/* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/helpers/icon */ "flarum/helpers/icon");
-/* harmony import */ var flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/Component */ "flarum/Component");
-/* harmony import */ var flarum_Component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_Component__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-/* global m, $ */
-
-var translationPrefix = 'clarkwinkelmann-emojionearea.forum.';
-
-var _default =
-/*#__PURE__*/
-function (_Component) {
-  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(_default, _Component);
-
-  function _default() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  var _proto = _default.prototype;
-
-  _proto.init = function init() {
-    this.textEditor = this.props.textEditor;
-  };
-
-  _proto.view = function view() {
-    return m('.Button.Button-emojionearea.hasIcon.Button--link.Button--icon', {
-      config: this.configArea.bind(this)
-    }, [flarum_helpers_icon__WEBPACK_IMPORTED_MODULE_2___default()('far fa-smile-beam', {
-      className: 'Button-icon'
-    }), m('.Button-emojioneareaContainer')]);
-  };
-
-  _proto.configArea = function configArea(element, isInitialized, context) {
-    var _this = this;
-
-    if (isInitialized) return;
-    var $container = $(element).find('.Button-emojioneareaContainer');
-    var area = $('<div />').emojioneArea({
-      standalone: true,
-      // Popup only mode
-      search: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableSearch'),
-      searchPlaceholder: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'search_placeholder'),
-      buttonTitle: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'picker_button'),
-      recentEmojis: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableRecent'),
-      filtersPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaFiltersPositionBottom') ? 'bottom' : 'top',
-      searchPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaSearchPositionBottom') ? 'bottom' : 'top',
-      container: $container,
-      tones: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableTones'),
-      hideSource: false,
-      // Do not hide the target element
-      autocomplete: false,
-      // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
-      events: {
-        // Listen for clicks to sync with Flarum editor
-        emojibtn_click: function emojibtn_click() {
-          // To get the unicode value, we need to pull it from the invisible insert area
-          _this.textEditor.insertAtCursor(area.data('emojioneArea').getText());
-        }
-      }
-    });
-    document.addEventListener('click', this.clickedOutside);
-
-    context.onunload = function () {
-      document.removeEventListener('click', _this.clickedOutside);
-    };
-  };
-
-  _proto.clickedOutside = function clickedOutside(event) {
-    var $target = $(event.target); // If we clicked on the popup or its content we don't do anything
-
-    if ($target.is('.Button-emojioneareaContainer') || $target.parents('.Button-emojioneareaContainer').length) {
-      return;
-    }
-
-    var $button = $('.Button-emojioneareaContainer .emojionearea-button'); // If the popup is currently open we close it
-
-    if ($button.is('.active')) {
-      $button.trigger('click');
-    }
-  };
-
-  return _default;
-}(flarum_Component__WEBPACK_IMPORTED_MODULE_3___default.a);
-
-
-
-/***/ }),
-
 /***/ "./src/forum/index.js":
 /*!****************************!*\
   !*** ./src/forum/index.js ***!
@@ -2011,37 +1889,102 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_extend__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_extend__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/app */ "flarum/app");
 /* harmony import */ var flarum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/TextEditor */ "flarum/components/TextEditor");
-/* harmony import */ var flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_EmojiAreaButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/EmojiAreaButton */ "./src/forum/components/EmojiAreaButton.js");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/components/Button */ "flarum/components/Button");
+/* harmony import */ var flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_components_Button__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/components/ComposerBody */ "flarum/components/ComposerBody");
+/* harmony import */ var flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/components/TextEditor */ "flarum/components/TextEditor");
+/* harmony import */ var flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
+
+/* global $ */
+
+var translationPrefix = 'clarkwinkelmann-emojionearea.forum.';
 flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initializers.add('clarkwinkelmann-emojionearea', function () {
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'controlItems', function (items) {});
-  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_2___default.a.prototype, 'toolbarItems', function (items) {
-    items.add('clarkwinkelmann-emojionearea', _components_EmojiAreaButton__WEBPACK_IMPORTED_MODULE_3__["default"].component({
-      textEditor: this
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_ComposerBody__WEBPACK_IMPORTED_MODULE_3___default.a.prototype, 'config', function (element, isInitialized, context) {
+    var _this = this;
+
+    if (isInitialized) return;
+    var $container = $('<div class="ComposerBody-emojioneareaContainer"/>');
+    this.$('.TextEditor-controls').before($container);
+    var area = $('<div />').emojioneArea({
+      standalone: true,
+      // Popup only mode
+      search: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableSearch'),
+      searchPlaceholder: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'search_placeholder'),
+      buttonTitle: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'picker_button'),
+      recentEmojis: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableRecent'),
+      filtersPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaFiltersPositionBottom') ? 'bottom' : 'top',
+      searchPosition: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaSearchPositionBottom') ? 'bottom' : 'top',
+      container: $container,
+      tones: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaEnableTones'),
+      autocomplete: false,
+      // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
+      events: {
+        // Listen for clicks to sync with Flarum editor
+        emojibtn_click: function emojibtn_click() {
+          // To get the unicode value, we need to pull it from the invisible insert area
+          _this.editor.insertAtCursor(_this.editor.emojioneArea.getText());
+        }
+      }
+    });
+    this.editor.emojioneArea = area.data('emojioneArea');
+
+    var clickedOutside = function clickedOutside(event) {
+      // If a click is triggered before the picker is ready, do not do anything
+      if (!_this.editor.emojioneArea.isReady) {
+        return;
+      }
+
+      var $target = $(event.target); // If we clicked on the popup or the editor button we don't do anything
+
+      if ($target.is('.emojionearea') || $target.parents('.emojionearea').length || $target.parents('.Button-emojionearea').length) {
+        return;
+      }
+
+      _this.editor.emojioneArea.hidePicker();
+    };
+
+    document.addEventListener('click', clickedOutside);
+    var previousUnload = context.onunload;
+
+    context.onunload = function () {
+      if (previousUnload) {
+        previousUnload();
+      }
+
+      document.removeEventListener('click', clickedOutside);
+    };
+  });
+  Object(flarum_extend__WEBPACK_IMPORTED_MODULE_0__["extend"])(flarum_components_TextEditor__WEBPACK_IMPORTED_MODULE_4___default.a.prototype, 'toolbarItems', function (items) {
+    var _this2 = this;
+
+    // Not using the TextEditorButton component because the tooltip apparently won't go away once the picker is open
+    items.add('clarkwinkelmann-emojionearea', flarum_components_Button__WEBPACK_IMPORTED_MODULE_2___default.a.component({
+      onclick: function onclick() {
+        if (_this2.emojioneArea.button.is('.active')) {
+          _this2.emojioneArea.hidePicker();
+        } else {
+          var position = _this2.$('.Button-emojionearea').position();
+
+          _this2.$('.emojionearea-picker').css('left', position.left - 290);
+
+          _this2.emojioneArea.showPicker();
+        }
+      },
+      className: 'Button Button--icon Button--link Button-emojionearea',
+      icon: 'far fa-smile-beam',
+      title: flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans(translationPrefix + 'picker_button')
     }));
 
     if (flarum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('emojioneAreaHideFlarumButton')) {
-      console.log(items.toArray(), 'toolbar');
       items.remove('emoji');
     }
   });
 });
-
-/***/ }),
-
-/***/ "flarum/Component":
-/*!**************************************************!*\
-  !*** external "flarum.core.compat['Component']" ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = flarum.core.compat['Component'];
 
 /***/ }),
 
@@ -2053,6 +1996,28 @@ module.exports = flarum.core.compat['Component'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['app'];
+
+/***/ }),
+
+/***/ "flarum/components/Button":
+/*!**********************************************************!*\
+  !*** external "flarum.core.compat['components/Button']" ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/Button'];
+
+/***/ }),
+
+/***/ "flarum/components/ComposerBody":
+/*!****************************************************************!*\
+  !*** external "flarum.core.compat['components/ComposerBody']" ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['components/ComposerBody'];
 
 /***/ }),
 
@@ -2075,17 +2040,6 @@ module.exports = flarum.core.compat['components/TextEditor'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['extend'];
-
-/***/ }),
-
-/***/ "flarum/helpers/icon":
-/*!*****************************************************!*\
-  !*** external "flarum.core.compat['helpers/icon']" ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = flarum.core.compat['helpers/icon'];
 
 /***/ }),
 
