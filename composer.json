@@ -27,8 +27,8 @@
             "title": "Emoji Picker",
             "icon": {
                 "name": "far fa-smile-beam",
-                "backgroundColor": "#f39c12",
-                "color": "#ffffff"
+                "backgroundColor": "#fdca47",
+                "color": "#664500"
             }
         },
         "flagrow": {
