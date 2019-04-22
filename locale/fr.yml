@@ -1,0 +1,15 @@
+clarkwinkelmann-emojionearea:
+    forum:
+        picker_button: Sélecteur d'emoji
+        search_placeholder: Chercher...
+
+    admin:
+        settings:
+            title: Réglages EmojioneArea
+            enableSearch: Activer la recherche
+            enableRecent: Activer emojis récents
+            enableTones: Activer sélecteur de teinte
+            filtersPosition: Déplacer les catégories au fond du sélecteur
+            searchPosition: Déplacer la recherche et les teinte du fond du sélecteur
+            hideFlarumButton: Cacher le bouton de la liste d'emoji de Flarum
+            hideFlarumButtonHelp: Cette extension doit être activée après l'extension Emoji de Flarum pour que ce réglage fonctionne
