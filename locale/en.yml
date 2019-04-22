@@ -1,7 +1,7 @@
 clarkwinkelmann-emojionearea:
     forum:
         picker_button: Emoji Picker
-        search_placeholder: Search
+        search_placeholder: Search...
 
     admin:
         settings:
