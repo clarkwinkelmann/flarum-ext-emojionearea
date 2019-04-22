@@ -26,6 +26,7 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
             container: $container,
             tones: app.forum.attribute('emojioneAreaEnableTones'),
             autocomplete: false, // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
+            sprite: false, // Undocumented setting, but disabling it removes an unnecessary CSS file load
             events: { // Listen for clicks to sync with Flarum editor
                 emojibtn_click: () => {
                     // To get the unicode value, we need to pull it from the invisible insert area
