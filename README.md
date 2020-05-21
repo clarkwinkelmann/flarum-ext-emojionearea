@@ -11,6 +11,8 @@ Please note that, as the name suggests, the emoji list and images used in this l
 
 However Flarum now switched to Twemoji, which means the images shown in the picker and those inserted in the post will be (slightly or radically) different.
 
+> As we bundle the emojione and emojioneArea libraries, the javascript for this extension is > 650kB, which can easily double or triple your assets size ⚠️ It's up to you to decide if it's worth it.
+
 Install it:
 
     composer require clarkwinkelmann/flarum-ext-emojionearea
