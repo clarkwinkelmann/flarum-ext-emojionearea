@@ -1,6 +1,6 @@
 import app from 'flarum/app';
-import EmojioneAreaSettingsModal from "./modals/EmojioneAreaSettingsModal";
+import EmojioneAreaSettingsModal from './modals/EmojioneAreaSettingsModal';
 
 app.initializers.add('clarkwinkelmann-emojionearea', () => {
-    app.extensionSettings['clarkwinkelmann-emojionearea'] = () => app.modal.show(new EmojioneAreaSettingsModal());
+    app.extensionSettings['clarkwinkelmann-emojionearea'] = () => app.modal.show(EmojioneAreaSettingsModal);
 });

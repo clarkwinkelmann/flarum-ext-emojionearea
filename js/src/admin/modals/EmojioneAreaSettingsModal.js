@@ -20,8 +20,7 @@ export default class EmojioneAreaSettingsModal extends SettingsModal {
                     onchange: value => {
                         this.setting(settingsPrefix + settingSuffix)(value ? '1' : '0');
                     },
-                    children: app.translator.trans(translationPrefix + labelSuffix),
-                }),
+                }, app.translator.trans(translationPrefix + labelSuffix)),
                 help ? m('.helpText', app.translator.trans(translationPrefix + labelSuffix + 'Help')) : null,
             ]);
         };
