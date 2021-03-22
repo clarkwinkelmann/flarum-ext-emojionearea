@@ -115,6 +115,9 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
                             this.$('.emojionearea-picker').css('left', position.left - 290);
                             this.emojioneArea.showPicker();
 
+                            // Focus EmojiOneArea search bar after opening
+                            $('.emojionearea-search input').focus();
+
                             this.emojioneAreaLoading = false;
                             m.redraw();
                         });
