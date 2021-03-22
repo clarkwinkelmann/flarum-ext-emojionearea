@@ -1,7 +1,7 @@
-import {extend} from 'flarum/extend';
+import {extend} from 'flarum/common/extend';
 import app from 'flarum/app';
-import Button from 'flarum/components/Button';
-import TextEditor from 'flarum/components/TextEditor';
+import Button from 'flarum/common/components/Button';
+import TextEditor from 'flarum/common/components/TextEditor';
 
 /* global m, $ */
 
@@ -125,9 +125,13 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
             icon: this.emojioneAreaLoading ? 'fas fa-spinner fa-pulse' : 'far fa-smile-beam',
             title: app.translator.trans(translationPrefix + 'picker_button'),
         }));
+    });
+});
 
-        if (app.forum.attribute('emojioneAreaHideFlarumButton')) {
+app.initializers.add('clarkwinkelmann-emojionearea-after', () => {
+    extend(TextEditor.prototype, 'toolbarItems', function (items) {
+        if (app.forum.attribute('emojioneAreaHideFlarumButton') && items.has('emoji')) {
             items.remove('emoji');
         }
     });
-});
+}, -100); // Since flarum/emoji does not run with any special priority, any negative value should work

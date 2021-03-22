@@ -15,7 +15,7 @@
         "source": "https://github.com/clarkwinkelmann/flarum-ext-emojionearea"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.14"
+        "flarum/core": "^0.1.0-beta.16"
     },
     "autoload": {
         "psr-4": {
@@ -25,6 +25,7 @@
     "extra": {
         "flarum-extension": {
             "title": "Emoji Picker",
+            "category": "feature",
             "icon": {
                 "name": "far fa-smile-beam",
                 "backgroundColor": "#fdca47",
