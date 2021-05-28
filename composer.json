@@ -15,7 +15,7 @@
         "source": "https://github.com/clarkwinkelmann/flarum-ext-emojionearea"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.16"
+        "flarum/core": "^1.0"
     },
     "autoload": {
         "psr-4": {
