@@ -96,40 +96,37 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
     });
 
     extend(TextEditor.prototype, 'toolbarItems', function (items) {
-        items.add(
-            'clarkwinkelmann-emojionearea',
-            <TextEditorButton
-                onclick={() => {
-                    // Prevent double-clicks while the library is loading
-                    if (this.emojioneAreaLoading) {
-                        return;
-                    }
+        items.add('clarkwinkelmann-emojionearea', TextEditorButton.component({
+            onclick: () => {
+                // Prevent double-clicks while the library is loading
+                if (this.emojioneAreaLoading) {
+                    return;
+                }
 
-                    if (this.emojioneArea && this.emojioneArea.button.is('.active')) {
-                        this.emojioneArea.hidePicker();
-                    } else {
-                        this.emojioneAreaLoading = true;
+                if (this.emojioneArea && this.emojioneArea.button.is('.active')) {
+                    this.emojioneArea.hidePicker();
+                } else {
+                    this.emojioneAreaLoading = true;
 
-                        loadEmojioneArea().then(() => {
-                            Promise.resolve(this.configureEmojioneArea()).then(() => {
-                                const position = this.$('.Button-emojionearea').position();
-                                this.$('.emojionearea-picker').css('left', position.left - 290);
-                                this.emojioneArea.showPicker();
+                    loadEmojioneArea().then(() => {
+                        this.configureEmojioneArea().then(() => {
+                            const position = this.$('.Button-emojionearea').position();
+                            this.$('.emojionearea-picker').css('left', position.left - 290);
+                            this.emojioneArea.showPicker();
 
-                                // Focus EmojiOneArea search bar after opening
-                                $('.emojionearea-search input').focus();
+                            // Focus EmojiOneArea search bar after opening
+                            $('.emojionearea-search input').focus();
 
-                                this.emojioneAreaLoading = false;
-                                m.redraw();
-                            });
+                            this.emojioneAreaLoading = false;
+                            m.redraw();
                         });
-                    }
-                }}
-                className='Button Button--icon Button--link Button-emojionearea'
-                icon={this.emojioneAreaLoading ? 'fas fa-spinner fa-pulse' : 'far fa-smile-beam'}
-                title={app.translator.trans(translationPrefix + 'picker_button')}
-            />
-        );
+                    });
+                }
+            },
+            className: 'Button Button--icon Button--link Button-emojionearea',
+            icon: this.emojioneAreaLoading ? 'fas fa-spinner fa-pulse' : 'far fa-smile-beam',
+            title: app.translator.trans(translationPrefix + 'picker_button'),
+        }));
     });
 });
 
