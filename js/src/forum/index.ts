@@ -107,7 +107,6 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
     });
 
     extend(TextEditor.prototype, 'toolbarItems', function (items) {
-        // Not using the TextEditorButton component because the tooltip apparently won't go away once the picker is open
         items.add('clarkwinkelmann-emojionearea', TextEditorButton.component({
             onclick: () => {
                 // Prevent double-clicks while the library is loading
