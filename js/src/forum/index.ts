@@ -1,9 +1,7 @@
 import {extend} from 'flarum/common/extend';
 import app from 'flarum/forum/app';
-import Button from 'flarum/common/components/Button';
 import TextEditor from 'flarum/common/components/TextEditor';
-
-/* global m, $ */
+import TextEditorButton from 'flarum/common/components/TextEditorButton';
 
 const translationPrefix = 'clarkwinkelmann-emojionearea.forum.';
 
@@ -40,7 +38,7 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
             return;
         }
 
-        const $target = $(event.target);
+        const $target = $<any>(event.target);
 
         // If we clicked on the popup or the editor button we don't do anything
         if ($target.is('.emojionearea') || $target.parents('.emojionearea').length || $target.parents('.Button-emojionearea').length) {
@@ -59,25 +57,38 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
         this.$('.TextEditor-controls').before($container);
 
         return new Promise(resolve => {
+            const filters: any = {};
+
+            Object.keys($().emojioneArea.defaults.filters).forEach(filter => {
+                const key = translationPrefix + 'filters.' + filter;
+
+                if (key in app.translator.translations) {
+                    filters[filter] = {
+                        title: app.translator.trans(key),
+                    };
+                }
+            });
+
             const area = $('<div />').emojioneArea({
                 standalone: true, // Popup only mode
-                search: app.forum.attribute('emojioneAreaEnableSearch'),
+                sprite: false, // Undocumented setting, but disabling it removes an unnecessary CSS file load
+                hidePickerOnBlur: false, // We do our own "click outside" detection since we have a custom opening button
                 searchPlaceholder: app.translator.trans(translationPrefix + 'search_placeholder'),
                 buttonTitle: app.translator.trans(translationPrefix + 'picker_button'),
-                recentEmojis: app.forum.attribute('emojioneAreaEnableRecent'),
-                filtersPosition: app.forum.attribute('emojioneAreaFiltersPositionBottom') ? 'bottom' : 'top',
-                searchPosition: app.forum.attribute('emojioneAreaSearchPositionBottom') ? 'bottom' : 'top',
                 container: $container,
-                tones: app.forum.attribute('emojioneAreaEnableTones'),
-                autocomplete: false, // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
-                sprite: false, // Undocumented setting, but disabling it removes an unnecessary CSS file load
+                filters,
                 events: { // Listen for clicks to sync with Flarum editor
                     emojibtn_click: () => {
-                        // To get the unicode value, we need to pull it from the invisible insert area
-                        this.attrs.composer.editor.insertAtCursor(this.emojioneArea.getText());
+                        // To get the Unicode value, we need to pull it from the invisible insert area
+                        this.attrs.composer.editor.insertAtCursor(this.emojioneArea!.getText());
+
+                        if (app.forum.attribute('emojioneAreaCloseOnPick')) {
+                            this.emojioneArea!.hidePicker();
+                        }
                     },
                     ready: resolve,
                 },
+                ...app.forum.attribute('emojioneAreaConfig'),
             });
 
             this.emojioneArea = area.data('emojioneArea');
@@ -97,7 +108,7 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
 
     extend(TextEditor.prototype, 'toolbarItems', function (items) {
         // Not using the TextEditorButton component because the tooltip apparently won't go away once the picker is open
-        items.add('clarkwinkelmann-emojionearea', Button.component({
+        items.add('clarkwinkelmann-emojionearea', TextEditorButton.component({
             onclick: () => {
                 // Prevent double-clicks while the library is loading
                 if (this.emojioneAreaLoading) {
@@ -113,7 +124,7 @@ app.initializers.add('clarkwinkelmann-emojionearea', () => {
                         this.configureEmojioneArea().then(() => {
                             const position = this.$('.Button-emojionearea').position();
                             this.$('.emojionearea-picker').css('left', position.left - 290);
-                            this.emojioneArea.showPicker();
+                            this.emojioneArea!.showPicker();
 
                             // Focus EmojiOneArea search bar after opening
                             $('.emojionearea-search input').focus();

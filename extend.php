@@ -17,4 +17,10 @@ return [
 
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attributes(ForumAttributes::class),
+
+    (new Extend\Settings())
+        ->default('clarkwinkelmann-emojionearea.enable-search', '1')
+        ->default('clarkwinkelmann-emojionearea.enable-recent', '1')
+        ->default('clarkwinkelmann-emojionearea.enable-tones', '1')
+        ->default('clarkwinkelmann-emojionearea.hide-flarum-button', '1'),
 ];

@@ -12,10 +12,12 @@
     ],
     "support": {
         "issues": "https://github.com/clarkwinkelmann/flarum-ext-emojionearea/issues",
-        "source": "https://github.com/clarkwinkelmann/flarum-ext-emojionearea"
+        "source": "https://github.com/clarkwinkelmann/flarum-ext-emojionearea",
+        "forum": "https://discuss.flarum.org/d/4787"
     },
     "require": {
-        "flarum/core": "^1.0"
+        "php": "^7.4",
+        "flarum/core": "^1.2"
     },
     "autoload": {
         "psr-4": {

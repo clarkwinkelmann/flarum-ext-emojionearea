@@ -2,6 +2,17 @@ clarkwinkelmann-emojionearea:
     forum:
         picker_button: Emoji Picker
         search_placeholder: Search...
+        filters:
+            tones: Diversity
+            recent: Recent
+            smileys_people: Smileys & People
+            animals_nature: Animals & Nature
+            food_drink: Food & Drink
+            activity: Activity
+            travel_places: Travel & Places
+            objects: Objects
+            symbols: Symbols
+            flags: Flags
 
     admin:
         settings:
@@ -10,4 +21,5 @@ clarkwinkelmann-emojionearea:
             enableTones: Enable tones
             filtersPosition: Move categories to the bottom
             searchPosition: Move search and tones to the bottom
+            closeOnPick: Close picker when emoji is selected
             hideFlarumButton: Hide Flarum's emoji picker button

@@ -6,7 +6,7 @@ use Flarum\Settings\SettingsRepositoryInterface;
 
 class ForumAttributes
 {
-    protected $settings;
+    protected SettingsRepositoryInterface $settings;
 
     public function __construct(SettingsRepositoryInterface $settings)
     {
@@ -16,12 +16,16 @@ class ForumAttributes
     public function __invoke(): array
     {
         return [
-            'emojioneAreaEnableSearch' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-search', true),
-            'emojioneAreaEnableRecent' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-recent', true),
-            'emojioneAreaEnableTones' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-tones', true),
-            'emojioneAreaFiltersPositionBottom' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.filters-position-bottom', false),
-            'emojioneAreaSearchPositionBottom' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.search-position-bottom', false),
-            'emojioneAreaHideFlarumButton' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.hide-flarum-button', true),
+            'emojioneAreaConfig' => [
+                'search' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-search'),
+                'recentEmojis' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-recent'),
+                'filtersPosition' => $this->settings->get('clarkwinkelmann-emojionearea.filters-position-bottom') ? 'bottom' : 'top',
+                'searchPosition' => $this->settings->get('clarkwinkelmann-emojionearea.search-position-bottom') ? 'bottom' : 'top',
+                'tones' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.enable-tones'),
+                'autocomplete' => false, // Do not try to provide autocomplete - will prevent the textcomplete lib from being included
+            ],
+            'emojioneAreaCloseOnPick' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.close-on-pick'),
+            'emojioneAreaHideFlarumButton' => (bool)$this->settings->get('clarkwinkelmann-emojionearea.hide-flarum-button'),
         ];
     }
 }

@@ -9,11 +9,13 @@ This extension adds the [EmojiOne Area](https://github.com/mervick/emojionearea)
 
 Please note that, as the name suggests, the emoji list and images used in this library are EmojiOne, which was previously used by Flarum until beta 7.
 
-However Flarum now switched to Twemoji, which means the images shown in the picker and those inserted in the post will be (slightly or radically) different.
+However, Flarum now switched to Twemoji, which means the images shown in the picker and those inserted in the post will be (slightly or radically) different.
 
 The picker is dynamically loaded from jsDelivr CDN when opened, which means this extension has virtually no impact on performance until the user interacts with the picker.
 
 ## Installation
+
+Latest version requires Flarum 1.2+ and PHP7.4+.
 
     composer require clarkwinkelmann/flarum-ext-emojionearea
 
