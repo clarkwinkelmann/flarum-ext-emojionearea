@@ -16,7 +16,7 @@
         "forum": "https://discuss.flarum.org/d/4787"
     },
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "flarum/core": "^1.2"
     },
     "autoload": {
